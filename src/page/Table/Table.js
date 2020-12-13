@@ -1,33 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import './Table.css';
-
-    var tableData = [
-        {
-            "name" : "Learning Node",
-            "status" : "half",
-            "progress" : "66",
-            "haha" : "asad",
-        },
-        {
-            "name" : "Learning React",
-            "status" : "doing",
-            "progress" : "55",
-            "haha" : "",
-        },
-        {
-            "name" : "Learning Js",
-            "status" : "left",
-            "progress" : "44",
-            "haha" : "",
-        },
-      ]
-      
-      var tableHeader = {
-        "name" : "Name",
-        "status" : "Status",
-        "progress" : "Progress",
-        "Report" : "No",
-      };
+import { tableData,tableHeader  } from "../../data/table";
 
 export const Table = () => {
 
@@ -40,18 +13,17 @@ export const Table = () => {
     }, [hideHeaders])
 
 
-    {/*Table headers*/}
 
     const toggleProperty = (property)=> {
 
         if(hideHeaders.includes(property)) {
-            // If it includes inside hideheader then remove it
-            sethideHeaders(prevState => prevState.filter(x => x != property))
+            // If it includes inside hideheader{state} then remove it
+            sethideHeaders(prevState => prevState.filter(x => x !== property))
         }
 
-        // If it doesn't include, put it inside the hideProperty State
+        // If it doesn't include, put it inside the hideHeader -> State
         if(!hideHeaders.includes(property)) {
-            // let newState = tempState.filter(property => )
+
             sethideHeaders(prevState => {
                 return [
                     ...prevState,
@@ -59,9 +31,37 @@ export const Table = () => {
                 ]
             })
         }
+
+        return;
+    }
+
+    const addProperty = () => {
+
     }
 
     
+    
+    let headerProperties = Object.entries(tableHeader).map( (headerData, index) => {
+
+    // Providing all the properties toggle button at this function.
+
+        return (
+            <div className="table-toggle-button-properties" key={index}>
+
+            <div>
+                {headerData[1]}
+            </div>
+
+            <div>
+                <label className="switch">
+                <input onClick={() => toggleProperty(headerData[0])} type="checkbox" defaultChecked/>
+                <span className="slider round"></span>
+                </label>
+            </div>
+
+          </div>
+        )
+    });
     
     let header = Object.entries(tableHeader).map( (headerData, index) => {
 
@@ -69,6 +69,8 @@ export const Table = () => {
 
     if( !hideHeaders.includes(headerData[0]))
         return <div key={index}> {headerData[1]}</div>
+
+      return null;
     });
 
     // Looping through table data
@@ -79,8 +81,6 @@ export const Table = () => {
 
         let row = Object.keys(item).map((keyName, i) => {
 
-            // console.log(keyName);
-
             if(!hideHeaders.includes(keyName)) {
             
             return (
@@ -88,12 +88,15 @@ export const Table = () => {
                     {item[keyName]}
                 </div>     
             ) }
+
+            return null;
         })
         return (
             <div key={index} className="table-row">
                 {row}
             </div>
         );
+
     });
 
 
@@ -103,7 +106,7 @@ export const Table = () => {
     <div className="table">
         <div className="table-nav">
             <div>
-                Add a view
+               + Add a view
             </div>
             <div style={{display:"flex",alignItems:"center"}}>
                 <div>
@@ -137,38 +140,9 @@ export const Table = () => {
 
 
     <div className="table-toggle-button">
+
         <div>
-            <div className="table-toggle-button-properties">
-
-                <div>
-                    Name
-                </div>
-
-                <div>
-                    <label className="switch">
-                    <input onClick={() => toggleProperty("name")} type="checkbox"/>
-                    <span className="slider round"></span>
-                    </label>
-                </div>
-
-            </div>
-
-            <div className="table-toggle-button-properties">
-
-                <div>
-                    Status
-                </div>
-
-                <div>
-                    <label className="switch">
-                    <input onClick={() => toggleProperty("status")} type="checkbox"/>
-                    <span className="slider round"></span>
-                    </label>
-                </div>
-
-            </div>
-
-
+            {headerProperties}
         </div>
 
     </div>
