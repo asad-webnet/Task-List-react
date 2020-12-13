@@ -1,0 +1,105 @@
+.table {
+    padding: 6em;
+}
+
+/* TABLE HEADERS */
+
+.table-header {
+    display: flex;
+}
+
+.table-header * {
+    color: #37352F99;
+}
+
+.table-header *:hover {
+    background: rgba(55, 53, 47, .08);
+    cursor: pointer;
+    
+}
+
+
+
+/* TABLE DATA */
+
+
+.table-row {
+    display: flex;
+}
+
+.table-row * {
+
+
+}
+
+
+/* TABLE DATA AND TABLE HEADER COMMON STYLES */
+.table-row *,.table-header *, .table-nav {
+    flex: 1;
+    text-align: left;
+    border-right: 1px solid rgba(55, 53, 47, 0.09);
+    font-size: 20px;
+    border-top: 1px solid rgb(223, 223, 222);
+    transition: background 20ms ease-in 0s;
+    padding: 10px 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  TABLE NAVIGATION  */
+
+
+.table-nav {
+    display: flex;
+    justify-content: space-between;
+    border-top: none;
+    height: 42px;
+    align-items: center;
+}
+
+.table-nav * {
+    padding: 6px 12px;
+    color: rgba(55, 53, 47, 0.6);
+}
+
+.table-nav > div:first-of-type:hover {
+    background: rgba(55, 53, 47, .08);
+    cursor: pointer;    
+}
+
+
+.table-nav div *:hover{
+    background: rgba(55, 53, 47, .08);
+    cursor: pointer;    
+}
+
+
+
+
+
+
+
+
+/* TABLE TOGGLE BUTTONS */
+
+.table-toggle-buttons {
+    display: flex;
+}
+.table-toggle-button-properties {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-toggle-button-properties div {
+    margin: 15px;
+}
